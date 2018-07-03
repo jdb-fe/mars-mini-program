@@ -1,0 +1,14 @@
+.all-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navigator-hover{
+  background: transparent;
+  opacity: 1;
+}

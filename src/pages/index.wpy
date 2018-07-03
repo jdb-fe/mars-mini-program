@@ -1,0 +1,159 @@
+<template>
+  <view class='article-list'>
+    <repeat for="{{list}}" key="index" index="index" item="item">
+      <view class="article-item" @tap="clickHandle" data-item='{{item}}'>
+        <view class='info-wrapper'>
+          <view class='title'>{{item.title}}</view>
+          <view class='user'>
+            <view class='name'>{{item.user && item.user.name || 'Mars'}}</view>
+            <view class='time'>{{item.createAt}}</view>
+          </view>
+        </view>
+        <view class="image-box">
+          <image class='image' src='{{item.thumb}}'></image>
+        </view>
+      </view>
+    </repeat>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import fetchApi from '@/utils/fetchApi'
+import service from '@/utils/service'
+export default class Index extends wepy.page {
+  data = {
+    list: [],
+    limit: 10,
+    page: 1,
+    totalPage: null
+  }
+
+  config = {
+    navigationBarTitleText: 'Mars精选'
+  }
+
+  components = {}
+
+  watch = {
+    'list': (val) => {
+      let that = this
+      console.log('list', val)
+      val.forEach(function (el) {
+        el.createAt = that.formatTime(el.createAt)
+      })
+    }
+  }
+
+  methods = {
+    clickHandle (e) {
+      let item = e.currentTarget.dataset.item
+      let title = item.title
+      let id = item.id
+      let url = '/pages/webview'
+      url = url + '?title=' + title + '&id=' + id
+      console.log(url)
+      wepy.navigateTo({
+        url: url
+      })
+    }
+  }
+
+  getListInfo () {
+    fetchApi({
+      url: '<<getListApi>>',
+      method: 'GET',
+      data: {
+        page: this.page,
+        limit: this.limit
+      }
+    }).then((res) => {
+        let data = res.data
+        let list
+        if(this.page == 1){
+          list = []
+          wx.stopPullDownRefresh()
+        }else{
+          list = this.list
+        }
+        this.list = list.concat(data.posts)
+        this.totalPage = data.pages.totalPage
+        this.$apply()
+    })
+  }
+
+  formatTime (val) {
+    let stamp = new Date(val).getTime()
+    let oneDay = 24 * 60 * 60 * 1000
+    // let oneMonth = 30 * oneDay
+    // let oneYear = 12 * oneMonth
+    let temp = parseInt(stamp / oneDay)
+    console.log(temp)
+  }
+
+  onLoad () {
+    this.getListInfo()
+  }
+
+  onReachBottom () {
+    this.page ++
+    this.getListInfo()
+  }
+
+  onPullDownRefresh () {
+    this.page = 1
+    this.getListInfo()
+  }
+}
+</script>
+
+<style lang='scss'>
+.scroll-view-item{
+  height: 300px;
+  background: red
+}
+.article-list {
+  scroll-view{
+    height: 100%;
+    background: red;
+    overflow:auto;
+  }
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  .article-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 30rpx 0;
+    overflow: hidden;
+    .info-wrapper{
+      margin-right: 30rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height:190rpx;
+      .title{
+        color: #313235;
+        font-size: 32rpx;
+      }
+      .user{
+        font-size: 24rpx;
+        color:#717275;
+        display: flex;
+        flex-direction: row;
+      }
+    }
+    .image-box{
+        width:280rpx;
+        height:190rpx;
+        background: #e1e3e5;
+      .image{
+        display: inline-block;
+        width:280rpx;
+        height:100%;
+      }
+    }
+    border-bottom: 1rpx solid #e1e3e5;
+  }
+}
+</style>

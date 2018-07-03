@@ -1,0 +1,53 @@
+{
+  "name": "IOU",
+  "version": "0.0.1",
+  "description": "欠条项目",
+  "main": "dist/app.js",
+  "scripts": {
+    "serve": "cross-env  API_ENV=serve wepy build --watch",
+    "test": "cross-env NODE_ENV=production API_ENV=test wepy build --no-cache --watch",
+    "build": "cross-env NODE_ENV=production API_ENV=prod wepy build --no-cache"
+  },
+  "wepy": {
+    "module-a": false
+  },
+  "author": "张士标 <zhangshibiao@jiedaibao.com>",
+  "license": "MIT",
+  "dependencies": {
+    "js-base64": "^2.4.3",
+    "mozjpeg": "^5.0.0",
+    "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
+    "redux-promise": "^0.5.3",
+    "wepy": "^1.7.1",
+    "wepy-async-function": "^1.4.4",
+    "wepy-com-toast": "^1.0.2",
+    "wepy-redux": "^1.5.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "chokidar": "^2.0.3",
+    "cross-env": "^5.1.4",
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-friendly-formatter": "^2.0.7",
+    "eslint-plugin-html": "^2.0.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "fastify": "^1.2.1",
+    "fastify-formbody": "^2.0.0",
+    "towxml": "^1.5.2",
+    "wepy-compiler-babel": "^1.5.1",
+    "wepy-compiler-less": "^1.3.10",
+    "wepy-compiler-sass": "^1.3.12",
+    "wepy-eslint": "^1.5.3",
+    "wepy-plugin-imagemin": "^1.5.3",
+    "wepy-plugin-replace": "^1.5.10",
+    "wepy-plugin-uglifyjs": "^1.3.7"
+  }
+}

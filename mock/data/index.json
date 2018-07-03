@@ -1,0 +1,29 @@
+{
+  "error": {
+    "returnCode": 0,
+    "returnMessage": "操作成功",
+    "returnUserMessage": "操作成功"
+  },
+  "data": {
+    "memberID": 22313132,
+    "sendCount": 5000,
+    "sendConfirm": "有5笔欠条销账待确认",
+    "receiveCount": 3000,
+    "receiveConfirm": "有3笔欠条待确认",
+    "borrowQuota": 20000,
+    "notice": "3",
+    "title": "电子欠条",
+    "copyright": "电子欠条服务由成都嘉宁正道提供",
+    "identificationStatus": 1,
+    "bannerList": [{
+        "imageUrl": "http://img2.imgtn.bdimg.com/it/u=706693346,2817856332&fm=27&gp=0.jpg",
+        "action": "https://www.baidu.com/"
+      },
+      {
+        "imageUrl": "http://img2.imgtn.bdimg.com/it/u=318956907,1651302581&fm=27&gp=0.jpg",
+        "action": "https://m.jiedaibao.com/"
+      }
+    ]
+  },
+  "logId": 4242683342
+}

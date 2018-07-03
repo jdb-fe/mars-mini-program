@@ -1,0 +1,12 @@
+{
+  "getListApi": {
+    "serve": "http://news.noonme.com/api/post",
+    "test": "https://news.noonme.com/api/post/",
+    "prod": "https://news.noonme.com/api/post"
+  },
+  "getArticleApi": {
+    "serve": "http://news.noonme.com/api/post/",
+    "test": "https://news.noonme.com/api/post/",
+    "prod": "https://news.noonme.com/api/post/"
+  }
+}
